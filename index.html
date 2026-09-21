@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fôlego — Descubra hoje o aperto de caixa que só chegaria daqui a cinco semanas</title>
+<meta name="description" content="O Fôlego conecta suas contas e notas fiscais, projeta o caixa 90 dias à frente e mantém a conta correta a cada etapa da reforma tributária.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Manual de Marca Fôlego v1 */
+  --papel:#F8F7F3;
+  --verde-50:#F2F7F3;  --verde-100:#E4EDE7; --verde-200:#CBDCD0;
+  --verde-300:#A9C1B0; --verde-500:#5C7F68; --verde-700:#2E4636;
+  --verde-800:#1B3226;  --verde-900:#10201A;
+  --ambar:#C77E12;      --ambar-txt:#8F5A08;
+  --grafite-900:#14171A; --grafite-600:#4C535B; --grafite-400:#939BA5;
+  --grafite-200:#D6DADF; --grafite-100:#E9ECEF;
+  --f-vermelho:#B23A2F; --f-azul:#2C5C8A; --f-verde:#3F7A55;
+
+  --display:'Archivo',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+  --u:7px; /* unidade de respiro do manual */
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  font-family:var(--display);
+  background:var(--papel);
+  color:var(--grafite-900);
+  font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.limite{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* ---- Rótulo — Space Mono 11 / +14% / caixa alta ---- */
+.rotulo{
+  font-family:var(--mono); font-size:12.5px; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase;
+}
+
+/* ================= TOPO ================= */
+.topo{
+  padding:calc(var(--u)*3) 0;
+  position:sticky; top:0; z-index:20;
+  background:rgba(248,247,243,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+.topo.rolou{border-bottom-color:var(--grafite-200)}
+.topo .limite{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.marca{display:flex;align-items:center;gap:9px}
+.marca svg{width:34px;height:34px;display:block}
+.marca .palavra{
+  font-family:var(--display); font-weight:800; font-size:26px;
+  letter-spacing:-.028em; color:var(--verde-700);
+}
+.link-topo{background:none;cursor:pointer;border:none;border-radius:0;font-family:var(--mono);
+  font-family:var(--mono); font-size:12.5px; color:var(--verde-700);
+  text-decoration:none; border-bottom:1px solid var(--verde-200);
+  padding-bottom:2px; transition:border-color .2s;
+}
+.link-topo:hover{border-bottom-color:var(--verde-700)}
+
+/* ================= DOBRA ================= */
+.dobra{
+  display:flex; align-items:center;
+  padding:clamp(38px,6vh,74px) 0 clamp(46px,7vh,86px);
+}
+.grade{
+  display:grid; grid-template-columns:1.1fr .9fr;
+  gap:clamp(30px,4vw,60px); align-items:start; width:100%;
+}
+
+/* --- etiqueta --- */
+.etiqueta{
+  display:inline-flex; align-items:center; gap:0;
+  border-radius:4px; overflow:hidden; margin-bottom:calc(var(--u)*3);
+  flex-wrap:wrap;
+}
+.etiqueta .a{
+  background:var(--ambar); color:#fff;
+  font-size:11.5px; letter-spacing:.12em; padding:7px 11px; white-space:nowrap;
+}
+
+/* --- título e apoio --- */
+h1{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(28px,2.95vw,38px);
+  line-height:1.06; letter-spacing:-.028em;
+  color:var(--verde-700); margin-bottom:calc(var(--u)*2.5);
+  text-wrap:balance;
+}
+h1 .marcado{position:relative;white-space:nowrap}
+h1 .marcado::after{
+  content:''; position:absolute; left:-.03em; right:-.03em;
+  bottom:.09em; height:.09em; background:var(--ambar); border-radius:1px;
+}
+.apoio{
+  font-size:clamp(15.5px,1.2vw,17px); line-height:1.6;
+  color:var(--grafite-600); max-width:31em; margin-bottom:calc(var(--u)*4);
+}
+.apoio b{color:var(--grafite-900);font-weight:600}
+
+/* --- ações --- */
+.acoes{display:flex;flex-wrap:nowrap;align-items:center;gap:16px;margin-bottom:calc(var(--u)*2)}
+.botao{
+  font-family:var(--display); font-size:17px; font-weight:700; letter-spacing:-.01em;
+  color:var(--verde-50); background:var(--verde-700);
+  border:none; border-radius:4px; padding:16px 28px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:11px; text-decoration:none;
+  transition:background .18s,transform .18s;
+}
+.botao:hover{background:var(--verde-800)}
+.botao:active{transform:translateY(1px)}
+.botao:focus-visible{outline:3px solid var(--ambar);outline-offset:3px}
+.botao .pt{width:8px;height:8px;border-radius:50%;background:var(--ambar);flex-shrink:0}
+@media(min-width:921px){
+  .acoes .botao,.secundario{white-space:nowrap}
+}
+
+.secundario{
+  font-family:var(--display); font-size:16px; font-weight:500;
+  color:var(--verde-700); text-decoration:none;
+  display:inline-flex; align-items:center; gap:8px;
+  border-bottom:1px solid var(--verde-200); padding-bottom:3px;
+  transition:border-color .2s;
+}
+.secundario:hover{border-bottom-color:var(--verde-700)}
+
+.redutores{
+  font-family:var(--mono); font-size:12.5px; color:var(--grafite-600);
+  letter-spacing:.01em; line-height:1.7;
+}
+
+/* ================= CARTÃO DO PRODUTO ================= */
+.produto{
+  margin-top:6px;
+  background:var(--verde-800); border-radius:7px;
+  padding:clamp(18px,2.2vw,26px);
+  box-shadow:0 1px 0 rgba(20,23,26,.04);
+}
+.produto-topo{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:12px; padding-bottom:12px; margin-bottom:4px;
+  border-bottom:1px solid rgba(242,247,243,.12);
+}
+.produto-topo .rotulo{color:var(--verde-300)}
+.produto-topo .tag{
+  font-family:var(--mono); font-size:10.5px; color:var(--verde-500);
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.grafico{width:100%;height:auto;display:block;margin:6px 0 0}
+
+.alerta{
+  margin-top:14px; padding:13px 15px;
+  background:rgba(178,58,47,.16);
+  border-left:3px solid var(--f-vermelho);
+  border-radius:3px;
+}
+.alerta .dado{
+  font-family:var(--mono); font-size:clamp(15px,1.5vw,19px); font-weight:700;
+  color:#F2B8B1; letter-spacing:-.01em;
+}
+.alerta .txt{
+  font-family:var(--mono); font-size:11.5px; color:var(--verde-300);
+  line-height:1.6; margin-top:3px;
+}
+
+.opcoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.opcao{
+  flex:1 1 auto; min-width:96px;
+  background:rgba(242,247,243,.07); border-radius:3px; padding:9px 11px;
+}
+.opcao .n{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--verde-50)}
+.opcao .l{font-family:var(--mono);font-size:9.5px;color:var(--verde-300);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.opcao.melhor{background:rgba(63,122,85,.28)}
+.opcao.melhor .n{color:#A8D8B9}
+
+.legenda{
+  display:flex;flex-wrap:wrap;gap:6px 18px;
+  margin-top:14px;padding-top:12px;
+  border-top:1px solid rgba(242,247,243,.12);
+}
+.legenda span{
+  font-family:var(--mono);font-size:9.5px;color:var(--verde-300);
+  letter-spacing:.06em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.legenda i{width:15px;height:0;border-top:2.5px solid var(--verde-50);display:inline-block}
+.legenda i.tr{border-top-style:dashed;border-color:var(--verde-300)}
+.legenda i.pt{width:8px;height:8px;border:none;border-radius:50%;background:var(--ambar)}
+
+/* ================= FAIXA DE DADOS ================= */
+.faixa{
+  background:var(--verde-700);
+  padding:calc(var(--u)*9) 0 calc(var(--u)*9);
+}
+.faixa .rotulo{color:var(--verde-300);margin-bottom:10px;display:block}
+.faixa h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(24px,2.5vw,32px); line-height:1.22; letter-spacing:-.022em;
+  color:var(--verde-50); max-width:20em; margin-bottom:calc(var(--u)*6);
+}
+.dados{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,40px)}
+.dado-item{display:flex;flex-direction:column}
+.dado-item .num{
+  font-family:var(--mono); font-size:clamp(32px,4.1vw,48px); font-weight:700;
+  color:var(--verde-50); letter-spacing:-.03em; line-height:1;
+}
+
+/* --- barra de proporção --- */
+.trilha{
+  position:relative; height:10px; margin:22px 0 0;
+  background:rgba(242,247,243,.12); border-radius:1px;
+}
+.preenche{
+  position:absolute; left:0; top:0; bottom:0;
+  background:var(--verde-50); border-radius:1px;
+  transform-origin:left center; transform:scaleX(0);
+  animation:enche 1s cubic-bezier(.22,.61,.36,1) .35s forwards;
+}
+.marca-pt{
+  opacity:0;
+  position:absolute; top:50%; width:11px; height:11px; border-radius:50%;
+  background:var(--ambar); box-shadow:0 0 0 3px var(--verde-700);
+  transform:translate(-50%,-50%) scale(0);
+  animation:pousaPt .38s cubic-bezier(.34,1.56,.64,1) 1.2s forwards;
+}
+
+.dado-item .desc{
+  font-size:16.5px; color:var(--verde-100); line-height:1.45; margin-top:22px;
+}
+.dado-item .fonte{
+  font-family:var(--mono); font-size:11px; color:var(--verde-300);
+  letter-spacing:.08em; text-transform:uppercase; margin-top:auto; padding-top:16px;
+}
+@keyframes enche{to{transform:scaleX(1)}}
+
+/* ================= COMO FUNCIONA ================= */
+.como{padding:calc(var(--u)*10) 0 calc(var(--u)*11)}
+.como .rotulo{color:var(--ambar-txt);margin-bottom:10px;display:block}
+.como h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(26px,2.6vw,34px); line-height:1.2; letter-spacing:-.025em;
+  color:var(--verde-700); max-width:16em; margin-bottom:calc(var(--u)*7);
+}
+.passos{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:clamp(18px,2vw,28px);
+  align-items:stretch;              /* mesma altura para os três */
+}
+.passo{
+  display:flex; flex-direction:column;
+  background:#fff;
+  border:1px solid var(--verde-200);
+  border-radius:6px;
+  padding:clamp(24px,2.4vw,32px);
+  height:100%;
+  position:relative;
+  transition:border-color .2s, transform .2s;
+}
+.passo:hover{border-color:var(--verde-500);transform:translateY(-2px)}
+
+/* Número grande, como marcador da sequência */
+.passo .topo-passo{
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; margin-bottom:20px;
+}
+.passo .icone svg{display:block}
+.passo .n{
+  font-family:var(--mono); font-size:clamp(38px,3.6vw,50px);
+  font-weight:700; letter-spacing:-.04em; line-height:.82;
+  color:var(--verde-200);
+}
+.passo:first-child .n{color:var(--ambar)}
+.passo h3{
+  font-family:var(--display); font-weight:600;
+  font-size:21px; line-height:1.25; letter-spacing:-.015em;
+  color:var(--verde-700); margin-bottom:4px;
+  min-height:2.5em;                 /* títulos de 1 e 2 linhas alinham */
+  display:flex; align-items:flex-start;
+}
+.passo p{font-size:15.5px;line-height:1.55;color:var(--grafite-600)}
+.passo p b{color:var(--grafite-900);font-weight:600}
+.passo .risco{
+  height:3px; background:var(--verde-100);
+  margin-top:auto;
+  padding-top:0;
+}
+.passo p{margin-bottom:24px}
+.passo:first-child .risco{background:var(--ambar)}
+.passo h3{color:var(--verde-700)}
+
+/* ================= PARA QUEM É ================= */
+.quem{
+  background:var(--verde-800);
+  padding:calc(var(--u)*10) 0 calc(var(--u)*11);
+}
+.quem .rotulo{color:var(--verde-300);margin-bottom:10px;display:block}
+.quem h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(26px,2.6vw,34px); line-height:1.2; letter-spacing:-.025em;
+  color:var(--verde-50); max-width:18em; margin-bottom:calc(var(--u)*7);
+}
+
+
+.quem h2{ max-width:26em; }
+.corte{
+  display:grid; grid-template-columns:1.12fr .88fr;
+  gap:clamp(20px,2.6vw,34px); align-items:start;
+}
+.corte-bloco{ padding:clamp(24px,2.8vw,34px); }
+.corte-bloco.sim{
+  background:var(--verde-700); border-top:3px solid var(--ambar);
+}
+.corte-bloco.nao{
+  border:1px solid rgba(242,247,243,.14); border-top:3px solid rgba(242,247,243,.24);
+}
+.corte-bloco .rot{
+  font-family:var(--mono); font-size:12px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px;
+}
+.corte-bloco.sim .rot{color:var(--ambar)}
+.corte-bloco.nao .rot{color:var(--verde-500)}
+.corte-bloco .chamada{
+  font-family:var(--display); font-weight:700; font-size:clamp(17px,1.8vw,20px);
+  line-height:1.3; letter-spacing:-.018em; margin-bottom:20px;
+}
+.corte-bloco.sim .chamada{color:#fff}
+.corte-bloco.nao .chamada{color:var(--verde-300)}
+
+.corte-bloco ul{list-style:none}
+.corte-bloco li{
+  font-size:15.5px; line-height:1.5; padding:11px 0 11px 30px;
+  position:relative;
+}
+.corte-bloco.sim li{ color:var(--verde-100); border-top:1px solid rgba(242,247,243,.1); }
+.corte-bloco.sim li:first-child{ border-top:none; padding-top:0; }
+.corte-bloco.sim li:first-child::before{ top:1px; }
+.corte-bloco.nao li{ color:var(--verde-300); }
+.corte-bloco li b{ color:#fff; font-weight:700; }
+
+/* marca de check no "feito para" */
+.corte-bloco.sim li::before{
+  content:''; position:absolute; left:0; top:12px;
+  width:15px; height:15px; border:1.5px solid var(--ambar); border-radius:3px;
+}
+.corte-bloco.sim li::after{
+  content:''; position:absolute; left:4.5px; top:15.5px;
+  width:5px; height:8px; border:solid var(--ambar);
+  border-width:0 2px 2px 0; transform:rotate(43deg);
+}
+.corte-bloco.sim li:first-child::after{ top:4.5px; }
+/* marca de exclusão no "ainda não" */
+.corte-bloco.nao li::before{
+  content:''; position:absolute; left:0; top:12px;
+  width:15px; height:15px; border:1.5px solid rgba(242,247,243,.22); border-radius:3px;
+}
+.corte-bloco.nao li::after{
+  content:''; position:absolute; left:4px; top:18.5px;
+  width:7px; height:1.5px; background:rgba(242,247,243,.35);
+}
+.corte-fecho{
+  margin-top:22px; padding-top:18px; border-top:1px solid rgba(242,247,243,.14);
+  font-size:15px; line-height:1.55; color:var(--verde-200);
+}
+.corte-fecho b{ color:#fff; font-weight:700; }
+
+/* ================= PROVA EXTERNA ================= */
+.prova{background:var(--verde-100);padding:calc(var(--u)*10) 0}
+.prova .rotulo{
+  font-size:16px; letter-spacing:.11em;
+  color:var(--ambar-txt); margin-bottom:calc(var(--u)*5); display:block;
+}
+.prova-caixa{
+  display:grid; grid-template-columns:1.3fr .7fr;
+  gap:clamp(30px,5vw,68px); align-items:start;
+}
+.prova blockquote{
+  font-family:var(--display); font-weight:600;
+  font-size:clamp(21px,2.3vw,31px); line-height:1.28; letter-spacing:-.022em;
+  color:var(--verde-700); text-indent:-.42em;
+}
+.prova .fonte-bloco{
+  display:flex; align-items:center; gap:14px;
+  margin-top:calc(var(--u)*4); padding-top:calc(var(--u)*3);
+  border-top:2px solid var(--verde-300);
+}
+.prova .fonte-bloco .fonte-nome{
+  font-family:var(--display); font-weight:700; font-size:17px;
+  color:var(--verde-700); letter-spacing:-.01em;
+}
+.prova .fonte-bloco .oque{
+  font-family:var(--mono); font-size:12px; color:#41604D;
+  letter-spacing:.05em; margin-top:2px;
+}
+.prova .marcador-f{
+  width:10px;height:10px;border-radius:50%;background:var(--ambar);flex-shrink:0;
+}
+
+/* nota lateral com peso */
+.prova .nota{
+  background:var(--verde-700); border-radius:6px;
+  padding:clamp(22px,2.2vw,28px);
+}
+.prova .nota .rot-n{
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ambar);
+  margin-bottom:12px; display:block;
+}
+.prova .nota p{
+  font-size:17px; color:var(--verde-100); line-height:1.5;
+}
+.prova .nota b{color:var(--verde-50);font-weight:600}
+
+/* ================= OBJEÇÕES ================= */
+.duvidas{padding:calc(var(--u)*10) 0 calc(var(--u)*11)}
+.duvidas .rotulo{color:var(--ambar-txt);margin-bottom:10px;display:block}
+.duvidas h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(26px,2.6vw,34px); line-height:1.2; letter-spacing:-.025em;
+  color:var(--verde-700); margin-bottom:calc(var(--u)*6);
+}
+.faq{border-top:1px solid var(--grafite-200)}
+.faq details{border-bottom:1px solid var(--grafite-200)}
+.faq summary{
+  list-style:none; cursor:pointer; padding:20px 40px 20px 0; position:relative;
+  font-family:var(--display); font-weight:600; font-size:clamp(16.5px,1.5vw,19px);
+  line-height:1.35; color:var(--verde-700); transition:color .15s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--verde-500)}
+.faq summary::after{
+  content:''; position:absolute; right:6px; top:50%;
+  width:13px; height:2px; background:var(--ambar); transform:translateY(-50%);
+}
+.faq summary::before{
+  content:''; position:absolute; right:11.5px; top:50%;
+  width:2px; height:13px; background:var(--ambar);
+  transform:translateY(-50%); transition:transform .2s;
+}
+.faq details[open] summary::before{transform:translateY(-50%) scaleY(0)}
+.faq p{
+  font-size:16px; line-height:1.6; color:var(--grafite-600);
+  padding:0 40px 22px 0; max-width:46em;
+}
+.faq p b{color:var(--grafite-900);font-weight:600}
+
+/* ================= CTA FINAL ================= */
+.cta-final{background:var(--verde-800);padding:calc(var(--u)*13) 0}
+.cta-grade{display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,4vw,56px);flex-wrap:wrap}
+.cta-final h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(24px,2.5vw,33px); line-height:1.2; letter-spacing:-.025em;
+  color:var(--verde-50); max-width:15em;
+}
+.cta-final .apoio-c{
+  font-family:var(--mono); font-size:13px; color:var(--verde-300);
+  margin-top:14px; line-height:1.7;
+}
+.cta-final .botao{background:var(--ambar);color:#fff}
+.cta-final .botao:hover{background:#A96A0F}
+.cta-final .botao .pt{background:#fff}
+
+/* ================= MODAL ================= */
+.veu{
+  position:fixed; inset:0; background:rgba(16,32,26,.66);
+  backdrop-filter:blur(3px); display:none;
+  align-items:flex-end; justify-content:center; z-index:60;
+}
+.veu.aberto{display:flex}
+@media(min-width:721px){.veu{align-items:center;padding:24px}}
+
+.painel{
+  background:var(--papel); width:100%; max-width:520px;
+  max-height:92dvh; overflow-y:auto; border-radius:10px 10px 0 0;
+  padding:26px clamp(20px,4vw,32px) max(26px,env(safe-area-inset-bottom));
+  animation:sobe .3s cubic-bezier(.22,.61,.36,1);
+}
+@media(min-width:721px){.painel{border-radius:8px;animation:aparece .26s ease}}
+@keyframes sobe{from{transform:translateY(28px);opacity:.4}to{transform:translateY(0);opacity:1}}
+@keyframes aparece{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+
+.painel-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:6px}
+.painel h2{font-family:var(--display);font-size:26px;font-weight:700;line-height:1.2;letter-spacing:-.02em;color:var(--verde-700);margin:0}
+.painel .sub{font-size:14.5px;color:var(--grafite-600);line-height:1.5;margin-bottom:22px}
+.painel .sub b{color:var(--verde-700);font-weight:700}
+.fechar{background:none;border:none;cursor:pointer;width:32px;height:32px;flex-shrink:0;border-radius:4px;color:var(--grafite-400);display:flex;align-items:center;justify-content:center;transition:color .15s,background .15s}
+.fechar:hover{color:var(--grafite-900);background:var(--grafite-100)}
+
+.campo{margin-bottom:15px}
+.campo label{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--grafite-600);margin-bottom:6px}
+.campo label .opc{color:var(--grafite-400);font-weight:400;letter-spacing:.06em}
+.campo input,.campo select{
+  width:100%; font-family:var(--display); font-size:16px; color:var(--grafite-900);
+  background:#fff; border:1px solid var(--grafite-200); border-radius:4px;
+  padding:13px 14px; appearance:none; transition:border-color .15s,box-shadow .15s;
+}
+.campo select{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%234C535B' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--verde-700);box-shadow:0 0 0 3px var(--verde-100)}
+.campo.erro input,.campo.erro select{border-color:var(--f-vermelho)}
+.aviso{font-family:var(--mono);font-size:10.5px;color:var(--f-vermelho);margin-top:5px;display:none;letter-spacing:.04em}
+.campo.erro .aviso{display:block}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.dupla{grid-template-columns:1fr;gap:0}}
+.nota-p{font-family:var(--mono);font-size:10.5px;line-height:1.65;color:var(--grafite-400);margin:16px 0 18px;padding-left:11px;border-left:2px solid var(--verde-200)}
+.painel .botao{width:100%;justify-content:center}
+
+/* ================= RODAPÉ ================= */
+.rodape{background:var(--papel);border-top:1px solid var(--grafite-200);padding:calc(var(--u)*8) 0 calc(var(--u)*5)}
+.rod-topo{margin-bottom:calc(var(--u)*5)}
+.rod-marca{display:flex;align-items:center;gap:11px}
+.rod-marca svg{width:44px;height:44px;display:block}
+.rod-marca .palavra{font-family:var(--display);font-weight:800;font-size:27px;letter-spacing:-.028em;color:var(--verde-700)}
+.rod-descritor{font-family:var(--mono);font-size:13px;color:var(--grafite-400);margin-top:8px;letter-spacing:.03em}
+.rod-colunas{
+  display:grid; grid-template-columns:1.5fr 1fr 1fr;
+  gap:clamp(26px,4vw,60px);
+  padding:calc(var(--u)*6) 0;
+}
+.rod-col h4{
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--grafite-400);
+  margin-bottom:14px;
+}
+.rod-col p, .rod-col a{
+  font-size:14.5px; line-height:1.65; color:var(--grafite-600);
+  text-decoration:none; display:block;
+}
+.rod-col a{border-bottom:1px solid transparent;width:fit-content;transition:color .2s,border-color .2s}
+.rod-col a:hover{color:var(--verde-700);border-bottom-color:var(--verde-300)}
+.rod-col p + p, .rod-col a + a{margin-top:7px}
+
+.rod-base{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-top:calc(var(--u)*4);border-top:1px solid var(--grafite-200);
+}
+.rod-base p{font-family:var(--mono);font-size:11.5px;color:var(--grafite-400);line-height:1.7}
+
+/* ================= ANIMAÇÃO ================= */
+.l-real{stroke-dasharray:400;stroke-dashoffset:400;animation:traca 1.1s cubic-bezier(.22,.61,.36,1) .3s forwards}
+.l-proj{opacity:0;animation:surge .5s ease 1.35s forwards}
+.faixa-neg{opacity:0;animation:surge .45s ease 1.5s forwards}
+.marcador{opacity:0;transform-origin:center;animation:pousa .42s cubic-bezier(.34,1.56,.64,1) 1.6s forwards}
+.rot-dado{opacity:0;animation:surge .4s ease 1.85s forwards}
+@keyframes traca{to{stroke-dashoffset:0}}
+@keyframes surge{to{opacity:1}}
+@keyframes pousa{0%{opacity:0;transform:scale(.2)}100%{opacity:1;transform:scale(1)}}
+@keyframes pousaPt{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
+/* ================= MOBILE ================= */
+@media(max-width:920px){
+  .dobra{padding:calc(var(--u)*5) 0 calc(var(--u)*5)}
+  .grade{grid-template-columns:1fr;gap:0}
+  .coluna{display:contents}
+  .etiqueta{order:1;margin-bottom:14px}
+  h1{order:3;font-size:clamp(27px,6.6vw,33px);margin-bottom:12px}
+  .apoio{order:4;font-size:15.5px;margin-bottom:20px}
+  .produto{order:5;margin-top:0;margin-bottom:22px;padding:16px 17px}
+  .acoes{order:6;width:100%;margin-bottom:12px;flex-wrap:wrap}
+  .botao{width:100%;justify-content:center}
+  .secundario{display:none}
+  .redutores{order:7;font-size:12px}
+  .legenda{display:none}
+  .dados{grid-template-columns:1fr;gap:30px}
+  .passos{grid-template-columns:1fr;gap:14px}
+
+  /* toque e legibilidade */
+  .rod-col a{padding:12px 0;line-height:1.4}
+  .rod-col a + a{margin-top:0}
+  .redutores{font-size:13.5px}
+  .cta-final .apoio-c{font-size:14px}
+  .nota-p{font-size:12px}
+  .campo label{font-size:11.5px}
+  .acoes .botao{white-space:normal}
+  .prova-caixa{grid-template-columns:1fr;gap:26px}
+  .prova blockquote{font-size:20px}
+  .prova .rotulo{font-size:14px;margin-bottom:calc(var(--u)*4)}
+  .duvidas{padding:calc(var(--u)*7) 0 calc(var(--u)*8)}
+  .cta-final{padding:calc(var(--u)*7) 0}
+  .cta-final .botao{width:100%;justify-content:center}
+  .cta-grade{flex-direction:column;align-items:stretch}
+  .marca svg{width:29px;height:29px}
+  .marca .palavra{font-size:22px}
+  .rod-marca svg{width:36px;height:36px}
+  .rod-marca .palavra{font-size:24px}
+  .rod-colunas{grid-template-columns:1fr;gap:28px}
+  .corte{grid-template-columns:1fr;gap:20px}
+  .quem{padding:calc(var(--u)*7) 0 calc(var(--u)*8)}
+  .quem h2{margin-bottom:calc(var(--u)*5)}
+  .corte-bloco .rot{font-size:11.5px;letter-spacing:.13em}
+  .passo h3{min-height:0}
+  .como{padding:calc(var(--u)*7) 0 calc(var(--u)*8)}
+  .como h2{margin-bottom:calc(var(--u)*5)}
+  .passo .icone{height:30px;margin-bottom:14px}
+  .faixa{padding:calc(var(--u)*7) 0 calc(var(--u)*6)}
+  .faixa h2{margin-bottom:calc(var(--u)*5)}
+  .link-topo{background:none;cursor:pointer;border:none;border-radius:0;font-family:var(--mono);display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .l-real{stroke-dashoffset:0}
+  .l-proj,.faixa-neg,.marcador,.rot-dado{opacity:1}
+}
+
+  .vozes .fonte{ font-family:var(--mono); font-size:11px;
+    color:var(--grafite-400); letter-spacing:.06em; line-height:1.7;
+    margin-top:18px; max-width:70ch; }
+
+  /* --- depoimentos (só aparece quando houver conteúdo real) --- */
+  .vozes{ background:#fff; padding:clamp(56px,7vw,96px) 0; }
+  .vozes[hidden]{ display:none; }
+  .vozes .rotulo{ color:var(--ambar-txt); margin-bottom:10px; display:block; }
+  .vozes h2{ font-family:var(--display); font-weight:700;
+    font-size:clamp(26px,2.6vw,34px); line-height:1.2; letter-spacing:-.025em;
+    color:var(--verde-700); max-width:22ch; margin:0 0 clamp(28px,3.4vw,44px); }
+  .vozes-grade{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:clamp(20px,2.6vw,32px); }
+  .voz{ border-left:3px solid var(--ambar); padding:2px 0 2px clamp(18px,2vw,24px); }
+  .voz blockquote{ margin:0; font-family:var(--display); font-weight:500;
+    font-size:clamp(17px,1.9vw,20px); line-height:1.5; letter-spacing:-.015em;
+    color:var(--grafite-900); }
+  .voz figcaption{ margin-top:14px; font-family:var(--mono); font-size:11px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--grafite-600); line-height:1.7; }
+  .voz figcaption b{ color:var(--verde-700); font-weight:700; }
+
+  /* --- contador de interesse no CTA --- */
+  .contador{ display:inline-flex; align-items:baseline; gap:10px; margin-bottom:18px;
+    padding:7px 14px; border:1px solid var(--verde-500); border-radius:2px; }
+  .contador[hidden]{ display:none; }
+  .contador .num{ font-family:var(--mono); font-weight:700; font-size:19px;
+    color:var(--ambar); line-height:1; }
+  .contador .txt{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--verde-300); line-height:1.4; }
+
+  /* --- passo a passo --- */
+  .uso{ background:#fff; padding:clamp(56px,7vw,96px) 0; border-top:1px solid var(--verde-200); }
+  .uso .rotulo{ color:var(--ambar-txt); margin-bottom:10px; display:block; }
+  .uso h2{ font-family:var(--display); font-weight:700;
+    font-size:clamp(26px,2.6vw,34px); line-height:1.2; letter-spacing:-.025em;
+    color:var(--verde-700); max-width:20ch; margin:0 0 12px; }
+  .uso-sub{ font-size:clamp(16px,1.8vw,19px); line-height:1.5; color:var(--grafite-600);
+    max-width:54ch; margin-bottom:clamp(30px,3.6vw,46px); }
+
+  .etapas{ list-style:none; margin:0; padding:0; position:relative;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(18px,2.4vw,32px); }
+  .etapas::before{ content:""; position:absolute; left:0; right:0; top:21px; height:2px;
+    background:var(--verde-100); }
+  .etapa{ position:relative; }
+  .etapa-n{ position:relative; z-index:1; width:44px; height:44px; border-radius:50%;
+    background:var(--verde-700); color:#fff; font-family:var(--mono); font-weight:700;
+    font-size:15px; display:flex; align-items:center; justify-content:center;
+    letter-spacing:-.02em; }
+  .quem-faz{ display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; padding:4px 8px; border-radius:3px;
+    margin:22px 0 10px; }
+  .quem-faz.voce{ background:var(--ambar); color:#fff; }
+  .quem-faz.nos{ background:var(--verde-100); color:var(--verde-700); }
+  .etapa h3{ font-family:var(--display); font-weight:700;
+    font-size:clamp(18px,1.55vw,21px); line-height:1.22; letter-spacing:-.02em;
+    color:var(--grafite-900); margin-bottom:9px; text-wrap:balance; }
+  .etapa p{ font-size:15.5px; line-height:1.55; color:var(--grafite-600); }
+  .etapa p b{ color:var(--grafite-900); font-weight:700; }
+
+
+  @media(max-width:1000px){
+    .etapas{ grid-template-columns:repeat(2,1fr); row-gap:clamp(30px,4vw,42px); }
+    .etapas::before{ display:none; }
+    .etapa{ padding-top:0; }
+  }
+  @media(max-width:560px){
+    .etapas{ grid-template-columns:1fr; row-gap:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="limite">
+    <div class="marca">
+      <svg viewBox="10 10 44 44" fill="none" role="img" aria-label="Fôlego">
+        <rect x="12" y="12" width="7" height="40" rx="1.5" fill="#2E4636"/>
+        <rect x="12" y="12" width="40" height="7" rx="1.5" fill="#2E4636"/>
+        <rect x="12" y="28" width="24" height="7" rx="1.5" fill="#2E4636"/>
+        <circle cx="46" cy="31.5" r="4.5" fill="#C77E12"/>
+      </svg>
+      <span class="palavra">Fôlego</span>
+    </div>
+    <button class="link-topo" id="abrir-topo">Testar grátis</button>
+  </div>
+</header>
+
+<main>
+  <section class="dobra">
+    <div class="limite">
+      <div class="grade">
+
+        <div class="coluna">
+          <div class="etiqueta rotulo">
+            <span class="a">Reforma tributária · 2027</span>
+          </div>
+
+          <h1>Descubra o aperto antes.<br>Resolva pelo <span class="marcado">menor preço</span>.</h1>
+
+          <p class="apoio">
+            Lemos as notas fiscais que você já emite, mostramos a data exata do aperto
+            e o preço de cada saída. <b>Com a regra do imposto atualizada a cada etapa
+            da reforma</b>, até 2033.
+          </p>
+
+          <div class="acoes">
+            <button class="botao" id="abrir">
+              <span class="pt"></span>
+              Testar grátis com os seus números
+            </button>
+            <a class="secundario" href="#funciona">Ver como funciona ↓</a>
+          </div>
+
+          <p class="redutores">
+            Sem cartão · sem instalar nada · resposta em até 1 dia útil
+          </p>
+        </div>
+
+        <div class="produto">
+          <div class="produto-topo">
+            <span class="rotulo">Seu caixa · 12 semanas</span>
+            <span class="tag">exemplo</span>
+          </div>
+
+          <svg class="grafico" viewBox="0 0 420 168" fill="none" role="img"
+               aria-label="Projeção de caixa cruzando o zero em 14 de outubro, com falta de R$ 62.400">
+            <line x1="0" y1="108" x2="420" y2="108" stroke="#2C5C8A" stroke-width="1" opacity=".55"/>
+            <rect class="faixa-neg" x="252" y="108" width="112" height="44" fill="#B23A2F" opacity=".22"/>
+            <polyline class="l-real" points="8,62 62,50 116,74 170,56 224,86 252,108"
+              stroke="#F2F7F3" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+            <polyline class="l-proj" points="252,108 300,136 344,146 412,100"
+              stroke="#A9C1B0" stroke-width="3" stroke-dasharray="7 8"
+              stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+            <circle class="marcador" cx="252" cy="108" r="7" fill="#C77E12"/>
+            <g class="rot-dado">
+              <line x1="252" y1="32" x2="252" y2="97" stroke="#C77E12" stroke-width="1" stroke-dasharray="3 4" opacity=".8"/>
+              <text x="243" y="28" text-anchor="end" font-family="'Space Mono',monospace"
+                    font-size="14" font-weight="700" fill="#C77E12">14 out</text>
+            </g>
+          </svg>
+
+          <div class="alerta">
+            <div class="dado">−R$ 62.400 na semana de 14 out</div>
+            <div class="txt">Faltam 35 dias. Tempo de escolher, não de correr.</div>
+          </div>
+
+          <div class="opcoes">
+            <div class="opcao melhor">
+              <div class="n">R$ 7.200</div>
+              <div class="l">antecipar</div>
+            </div>
+            <div class="opcao">
+              <div class="n">R$ 22.000</div>
+              <div class="l">desconto à vista</div>
+            </div>
+            <div class="opcao">
+              <div class="n">—</div>
+              <div class="l">segurar fornecedor</div>
+            </div>
+          </div>
+
+          <div class="legenda">
+            <span><i></i>Realizado</span>
+            <span><i class="tr"></i>Projetado</span>
+            <span><i class="pt"></i>Data crítica</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Prova de que o problema existe — primeira seção após a dobra -->
+  <section class="faixa" id="como">
+    <div class="limite">
+      <span class="rotulo">O tamanho do problema</span>
+      <h2>A empresa não quebra por vender pouco. Quebra por não enxergar o próximo mês.</h2>
+      <div class="dados">
+        <div class="dado-item">
+          <div class="num">63%</div>
+          <div class="trilha">
+            <div class="preenche" style="width:63%"></div>
+            <span class="marca-pt" style="left:63%"></span>
+          </div>
+          <p class="desc">das empresas não acompanham o caixa em tempo real</p>
+          <div class="fonte">Conta Simples · Visa</div>
+        </div>
+
+        <div class="dado-item">
+          <div class="num">52%</div>
+          <div class="trilha">
+            <div class="preenche" style="width:52%"></div>
+            <span class="marca-pt" style="left:52%"></span>
+          </div>
+          <p class="desc">das micro e pequenas empresas não têm reserva em caixa</p>
+          <div class="fonte">Sebrae · FGV</div>
+        </div>
+
+        <div class="dado-item">
+          <div class="num">R$ 614,9 bi</div>
+          <div class="trilha">
+            <div class="preenche" style="width:100%"></div>
+            <span class="marca-pt" style="left:100%"></span>
+          </div>
+          <p class="desc">em recebíveis antecipados no Brasil, alta de 43%</p>
+          <div class="fonte">Núclea</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dobra 3 — como funciona -->
+  <section class="como" id="funciona">
+    <div class="limite">
+      <span class="rotulo">O que muda para você</span>
+      <h2>Três coisas, na ordem em que importam.</h2>
+
+      <div class="passos">
+
+        <div class="passo">
+          <div class="topo-passo">
+            <div class="n">01</div>
+            <div class="icone">
+            <!-- Projeção: a linha do caixa -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+              <polyline points="3,17 8,12 12,15 19,7" stroke="#2E4636" stroke-width="2"
+                        stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+              <circle cx="20" cy="6" r="2" fill="#C77E12"/>
+            </svg>
+            </div>
+          </div>
+          <h3>Ver antes</h3>
+          <p>
+            A projeção deixa de ser manual. O Fôlego lê as notas fiscais que você já emite,
+            junta o que você tem a pagar e monta a linha do caixa 90 dias à frente. Você descobre o aperto com
+            <b>cinco semanas, não com cinco dias</b>.
+          </p>
+          <div class="risco"></div>
+        </div>
+
+        <div class="passo">
+          <div class="topo-passo">
+            <div class="n">02</div>
+            <div class="icone">
+            <!-- Comparar preço: três opções -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+              <line x1="3" y1="7" x2="19" y2="7" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <line x1="3" y1="12" x2="15" y2="12" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <line x1="3" y1="17" x2="11" y2="17" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <circle cx="20" cy="17" r="2" fill="#C77E12"/>
+            </svg>
+            </div>
+          </div>
+          <h3>Escolher com preço</h3>
+          <p>
+            Quando aparece um buraco, as saídas aparecem com o custo em reais na mesma tela.
+            Antecipar um recebível, dar desconto à vista, alongar prazo com fornecedor.
+            <b>Você não precisa de conselho — precisa dos três números lado a lado.</b>
+          </p>
+          <div class="risco"></div>
+        </div>
+
+        <div class="passo">
+          <div class="topo-passo">
+            <div class="n">03</div>
+            <div class="icone">
+            <!-- Regra do imposto: alíquota por ano -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+              <line x1="4" y1="19" x2="4" y2="13" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <line x1="9" y1="19" x2="9" y2="10" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <line x1="14" y1="19" x2="14" y2="7" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <line x1="19" y1="19" x2="19" y2="4" stroke="#2E4636" stroke-width="2" stroke-linecap="square"/>
+              <circle cx="19" cy="3" r="2" fill="#C77E12"/>
+            </svg>
+            </div>
+          </div>
+          <h3>Continuar certo até 2033</h3>
+          <p>
+            A regra do imposto muda sete vezes até 2033. O Fôlego mantém a conta atualizada
+            a cada etapa, sem você refazer fórmula nenhuma.
+            <b>É o que nenhuma planilha acompanha sozinha.</b>
+          </p>
+          <div class="risco"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Prova externa -->
+  
+
+  <section class="prova">
+    <div class="limite">
+      <span class="rotulo">O que dizem os números</span>
+      <div class="prova-caixa">
+        <div>
+          <blockquote>
+            &ldquo;Empresas que descobrem a exposição com 18 meses de antecedência
+            absorvem o impacto sem recorrer a crédito emergencial.&rdquo;
+          </blockquote>
+          <div class="fonte-bloco">
+            <span class="marcador-f"></span>
+            <div>
+              <div class="fonte-nome">Deloitte Brasil</div>
+              <div class="oque">Levantamento sobre impacto de caixa da reforma tributária</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nota">
+          <span class="rot-n">Por que isso importa</span>
+          <p>
+            Na mesma pesquisa, com 148 organizações, <b>quase 60% apontam a convivência
+            dos dois sistemas tributários durante a transição como a principal
+            preocupação</b>, e é exatamente essa conta que o Fôlego mantém correta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vídeo -->
+
+
+  <!-- Passo a passo: como o produto funciona na prática -->
+  <section class="uso" id="passo-a-passo">
+    <div class="limite">
+      <span class="rotulo">Passo a passo</span>
+      <h2>Como funciona na prática, do começo ao fim.</h2>
+      <p class="uso-sub">Quatro etapas. Duas são suas e levam alguns minutos. As outras duas são nossas.</p>
+
+      <ol class="etapas">
+
+        <li class="etapa">
+          <div class="etapa-n">01</div>
+          <span class="quem-faz voce">Você</span>
+          <h3>Manda o que já tem</h3>
+          <p>As notas que emitiu e o que tem a pagar nas próximas semanas.
+            <b>Sem instalar nada e sem conectar banco.</b> Se estiver em planilha, serve a planilha.</p>
+        </li>
+
+        <li class="etapa">
+          <div class="etapa-n">02</div>
+          <span class="quem-faz nos">Fôlego</span>
+          <h3>Monta a linha do caixa</h3>
+          <p>Cada nota entra no dia em que o dinheiro cai, não no dia em que foi emitida.
+            <b>E o imposto entra pela regra do ano em que você está.</b></p>
+        </li>
+
+        <li class="etapa">
+          <div class="etapa-n">03</div>
+          <span class="quem-faz nos">Fôlego</span>
+          <h3>Aponta a semana do aperto</h3>
+          <p>Os próximos 90 dias numa tela, com <b>o dia exato em que o saldo vira negativo
+            e quanto falta</b>. Hoje você só descobre quando já chegou.</p>
+        </li>
+
+        <li class="etapa">
+          <div class="etapa-n">04</div>
+          <span class="quem-faz voce">Você</span>
+          <h3>Escolhe a saída mais barata</h3>
+          <p>Antecipar a nota, dar desconto à vista ou alongar com o fornecedor.
+            <b>Os três custos em reais, lado a lado.</b></p>
+        </li>
+
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- Dobra 5 — para quem é -->
+  <section class="quem" id="quem">
+    <div class="limite">
+      <span class="rotulo">Para quem é</span>
+      <h2>Se você é dono e ainda é você quem cuida do caixa, o Fôlego foi feito para a sua empresa.</h2>
+
+      <div class="corte">
+
+        <div class="corte-bloco sim">
+          <div class="rot">Feito para</div>
+          <p class="chamada">Quantas destas descrevem a sua empresa?</p>
+          <ul>
+            <li><b>Indústria que vende a prazo para outras empresas.</b> Na sequência, distribuidoras e prestadores de serviço B2B</li>
+            <li>Faturamento entre <b>R$ 1 milhão e R$ 50 milhões</b> por ano</li>
+            <li>Prazo de recebimento <b>acima de 30 dias</b></li>
+            <li>Lucro Presumido ou Lucro Real</li>
+            <li>O sócio ainda participa das decisões de caixa</li>
+          </ul>
+          <p class="corte-fecho"><b>Três ou mais?</b> Então vale rodar uma projeção com os seus números.</p>
+        </div>
+
+        <div class="corte-bloco nao">
+          <div class="rot">Ainda não é para</div>
+          <p class="chamada">Nestes casos a gente prefere dizer que não.</p>
+          <ul>
+            <li>Quem vende só à vista, sem prazo e sem recebível a antecipar</li>
+            <li>Empresas do Simples Nacional comum, que ficam fora da separação automática do imposto</li>
+            <li>Operações com tesouraria própria e time financeiro estruturado</li>
+            <li>MEI e autônomo, porque o ganho não compensa a mudança de rotina</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+  <!-- Dúvidas -->
+  
+  <!-- Depoimentos reais. Para publicar: preencha os <figure class="voz"> abaixo
+       e remova o atributo hidden da <section>. Enquanto estiver vazia, não aparece. -->
+  <section class="vozes" id="vozes" hidden>
+    <div class="limite">
+      <span class="rotulo">Quem já rodou</span>
+      <h2>O que os donos disseram depois de ver o próprio caixa na tela.</h2>
+
+      <div class="vozes-grade">
+        <figure class="voz">
+          <blockquote>&ldquo;[depoimento 1]&rdquo;</blockquote>
+          <figcaption><b>[Nome]</b><br>[Cargo], [Empresa] · [Setor], [Cidade/UF]</figcaption>
+        </figure>
+        <figure class="voz">
+          <blockquote>&ldquo;[depoimento 2]&rdquo;</blockquote>
+          <figcaption><b>[Nome]</b><br>[Cargo], [Empresa] · [Setor], [Cidade/UF]</figcaption>
+        </figure>
+        <figure class="voz">
+          <blockquote>&ldquo;[depoimento 3]&rdquo;</blockquote>
+          <figcaption><b>[Nome]</b><br>[Cargo], [Empresa] · [Setor], [Cidade/UF]</figcaption>
+        </figure>
+      </div>
+
+      <p class="fonte">
+        Depoimentos coletados durante a fase de validação, com autorização de uso.
+      </p>
+    </div>
+  </section>
+
+  <section class="duvidas" id="duvidas">
+    <div class="limite">
+      <span class="rotulo">Antes de você perguntar</span>
+      <h2>As dúvidas que aparecem primeiro.</h2>
+
+      <div class="faq">
+        <details>
+          <summary>Preciso dar acesso à minha conta bancária?</summary>
+          <p>
+            No teste, não. Você manda faturamento aproximado, prazo médio e o que
+            tem a pagar nas próximas semanas — dados que você já sabe de cabeça.
+            <b>A conexão bancária é opcional e só entra depois</b>, via Open Finance,
+            que é o sistema regulado pelo Banco Central. Acesso é somente de leitura:
+            ninguém movimenta nada na sua conta.
+          </p>
+        </details>
+
+        <details>
+          <summary>Quanto custa depois do teste?</summary>
+          <p>
+            O produto ainda está sendo construído e <b>não tem preço definido</b>.
+            Quem entrar agora testa de graça e vai ajudar a decidir como ele
+            funciona. Não pedimos cartão e não há cobrança automática.
+          </p>
+        </details>
+
+        <details>
+          <summary>Já tenho ERP e contador. Vou precisar trocar alguma coisa?</summary>
+          <p>
+            Não. O Fôlego não substitui ERP nem contabilidade —
+            <b>ele responde uma pergunta que nenhum dos dois responde</b>: quanto
+            você vai ter em caixa daqui a algumas semanas, e qual a saída mais
+            barata quando faltar. Continue com o que já usa.
+          </p>
+        </details>
+
+        <details>
+          <summary>Minha empresa é do Simples. Serve para mim?</summary>
+          <p>
+            A projeção de caixa serve para qualquer empresa. Mas a parte tributária
+            entrega menos, porque <b>o Simples Nacional comum fica fora da separação
+            automática do imposto</b>. Se você está no Simples e vende à vista, hoje
+            o ganho é pequeno — preferimos dizer isso do que empurrar.
+          </p>
+        </details>
+
+        <details>
+          <summary>O que exatamente acontece quando eu clico?</summary>
+          <p>
+            Abre um formulário curto e depois a conversa no WhatsApp. Você manda
+            alguns números, <b>a gente monta a projeção e devolve em até um dia
+            útil</b>. Nesta fase o trabalho é feito à mão, por pessoas — é assim que
+            aprendemos o que o produto precisa ter.
+          </p>
+        </details>
+
+        <details>
+          <summary>Vocês vão vender meus dados ou me oferecer empréstimo?</summary>
+          <p>
+            Não vendemos dados e não somos instituição financeira.
+            <b>Nesta fase não oferecemos crédito nenhum</b> — mostramos o custo das
+            alternativas que você já usa, inclusive as que não são crédito, como
+            dar desconto à vista ou alongar prazo com fornecedor.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="cta-final">
+    <div class="limite">
+      <div class="cta-grade">
+        <div>
+          <!-- Contador real. Atualize o número em data-n e remova o hidden
+               quando houver pedidos de verdade. Em 0, não aparece. -->
+          <span class="contador" id="contador" data-n="0" hidden>
+            <span class="num" id="contador-n">0</span>
+            <span class="txt">donos já pediram o teste</span>
+          </span>
+          <h2>Descubra em qual semana o seu caixa aperta.</h2>
+          <p class="apoio-c">
+            Sem cartão · sem instalar nada · resposta em até 1 dia útil
+          </p>
+        </div>
+        <button class="botao" id="abrir-final">
+          <span class="pt"></span>
+          Testar grátis com os seus números
+        </button>
+      </div>
+    </div>
+  </section>
+
+<footer class="rodape">
+  <div class="limite">
+    <div class="rod-topo">
+      <div class="rod-marca">
+        <svg viewBox="10 10 44 44" fill="none" role="img" aria-label="Fôlego">
+          <rect x="12" y="12" width="7" height="40" rx="1.5" fill="#2E4636"/>
+          <rect x="12" y="12" width="40" height="7" rx="1.5" fill="#2E4636"/>
+          <rect x="12" y="28" width="24" height="7" rx="1.5" fill="#2E4636"/>
+          <circle cx="46" cy="31.5" r="4.5" fill="#C77E12"/>
+        </svg>
+        <span class="palavra">Fôlego</span>
+      </div>
+      <p class="rod-descritor">o aperto tem data</p>
+    </div>
+
+    <div class="rod-colunas">
+      <div class="rod-col">
+        <h4>Sobre</h4>
+        <p>
+          O Fôlego é um projeto em fase de validação. Ainda não é uma empresa
+          constituída e não somos instituição financeira.
+        </p>
+      </div>
+
+      <div class="rod-col">
+        <h4>Navegar</h4>
+        <a href="#funciona">O que muda</a>
+        <a href="#passo-a-passo">Passo a passo</a>
+        <a href="#quem">Para quem é</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+
+      <div class="rod-col">
+        <h4>Contato</h4>
+        <a href="mailto:contato@folego.com.br">contato@folego.com.br</a>
+        <a href="#" id="abrir-contato">Falar no WhatsApp</a>
+        <p>São Paulo · SP</p>
+      </div>
+    </div>
+
+    <div class="rod-base">
+      <p>Fôlego · Projeto em validação · 2026</p>
+      <p>
+        Dados de mercado: Sebrae, Banco Central, Serasa Experian, Coface,
+        Conta Simples/Visa, Núclea, EY e Deloitte
+      </p>
+    </div>
+  </div>
+</footer>
+
+<div class="veu" id="veu" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+  <div class="painel">
+    <div class="painel-topo">
+      <h2 id="tituloModal">Vamos rodar com os seus números.</h2>
+      <button class="fechar" id="fechar" aria-label="Fechar">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M1 1 14 14M14 1 1 14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+    <p class="sub">
+      Preencha e a conversa abre no WhatsApp. <b>É gratuito — não pedimos cartão
+      nem cobramos nada depois.</b>
+    </p>
+
+    <form id="form" novalidate>
+      <div class="campo" id="c-nome">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Como você quer ser chamado" autocomplete="name">
+        <span class="aviso">Preencha seu nome</span>
+      </div>
+
+      <div class="campo" id="c-empresa">
+        <label for="empresa">Empresa</label>
+        <input type="text" id="empresa" placeholder="Nome da sua empresa" autocomplete="organization">
+        <span class="aviso">Preencha o nome da empresa</span>
+      </div>
+
+      <div class="campo" id="c-whats">
+        <label for="whats">WhatsApp</label>
+        <input type="tel" id="whats" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15">
+        <span class="aviso">Digite um número com DDD</span>
+      </div>
+
+      <div class="dupla">
+        <div class="campo" id="c-prazo">
+          <label for="prazo">Prazo de recebimento</label>
+          <select id="prazo">
+            <option value="">Selecione</option>
+            <option>Recebo à vista</option>
+            <option>Até 15 dias</option>
+            <option>16 a 30 dias</option>
+            <option>31 a 45 dias</option>
+            <option>Mais de 45 dias</option>
+            <option>Varia muito</option>
+          </select>
+          <span class="aviso">Escolha uma opção</span>
+        </div>
+
+        <div class="campo" id="c-setor">
+          <label for="setor">Setor <span class="opc">— opcional</span></label>
+          <select id="setor">
+            <option value="">Selecione</option>
+            <option>Serviços para empresas</option>
+            <option>Indústria</option>
+            <option>Distribuição e atacado</option>
+            <option>Comércio e varejo</option>
+            <option>Construção</option>
+            <option>Transporte e logística</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="nota-p">
+        Usamos seus dados só para montar a projeção e falar com você.
+        Nada é compartilhado com terceiros.
+      </p>
+
+      <button type="submit" class="botao">
+        <span class="pt"></span>
+        Abrir conversa no WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Troque pelo seu número, com código do país e DDD, só dígitos
+  const WHATSAPP = '5511999999999';
+
+  // ---- modal ----
+  const veu=document.getElementById('veu');
+  const form=document.getElementById('form');
+  const whats=document.getElementById('whats');
+  let ultimoFoco=null;
+
+  function abre(){
+    ultimoFoco=document.activeElement;
+    veu.classList.add('aberto'); document.body.style.overflow='hidden';
+    setTimeout(()=>document.getElementById('nome').focus(),60);
+  }
+  function fecha(){
+    veu.classList.remove('aberto'); document.body.style.overflow='';
+    if(ultimoFoco) ultimoFoco.focus();
+  }
+  ['abrir','abrir-topo','abrir-final','abrir-contato'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('click',e=>{e.preventDefault();abre()});
+  });
+  document.getElementById('fechar').addEventListener('click',fecha);
+  veu.addEventListener('click',e=>{if(e.target===veu)fecha()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&veu.classList.contains('aberto'))fecha()});
+
+  whats.addEventListener('input',e=>{
+    let v=e.target.value.replace(/\D/g,'').slice(0,11);
+    if(v.length>6) v=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    else if(v.length>2) v=`(${v.slice(0,2)}) ${v.slice(2)}`;
+    else if(v.length>0) v=`(${v}`;
+    e.target.value=v;
+  });
+
+  function marca(id,ruim){document.getElementById(id).classList.toggle('erro',ruim);return !ruim}
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nome=document.getElementById('nome').value.trim();
+    const empresa=document.getElementById('empresa').value.trim();
+    const tel=whats.value.replace(/\D/g,'');
+    const prazo=document.getElementById('prazo').value;
+    const setor=document.getElementById('setor').value;
+
+    let ok=true;
+    ok=marca('c-nome',nome.length<2)&&ok;
+    ok=marca('c-empresa',empresa.length<2)&&ok;
+    ok=marca('c-whats',tel.length<10)&&ok;
+    ok=marca('c-prazo',prazo==='')&&ok;
+    if(!ok){const p=form.querySelector('.campo.erro input,.campo.erro select');if(p)p.focus();return}
+
+    const msg=`Olá! Quero testar o Fôlego.
+
+Nome: ${nome}
+Empresa: ${empresa}
+Prazo de recebimento: ${prazo}${setor?`
+Setor: ${setor}`:''}`;
+
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener');
+    fecha();
+  });
+
+  form.querySelectorAll('input,select').forEach(el=>{
+    el.addEventListener('input',()=>el.closest('.campo').classList.remove('erro'));
+    el.addEventListener('change',()=>el.closest('.campo').classList.remove('erro'));
+  });
+
+  const topo=document.getElementById('topo');
+  addEventListener('scroll',()=>topo.classList.toggle('rolou',scrollY>8),{passive:true});
+
+  /* contador de interesse: só aparece com número real (>0) */
+  (function(){
+    var c=document.getElementById('contador');
+    if(!c) return;
+    var n=parseInt(c.getAttribute('data-n'),10)||0;
+    if(n>0){ document.getElementById('contador-n').textContent=n; c.hidden=false; }
+  })();
+
+  /* depoimentos: some sozinho se os placeholders não foram preenchidos */
+  (function(){
+    var s=document.getElementById('vozes');
+    if(!s) return;
+    var vivos=[].slice.call(s.querySelectorAll('.voz')).filter(function(f){
+      return f.querySelector('blockquote').textContent.indexOf('[depoimento')===-1;
+    });
+    if(vivos.length){
+      [].slice.call(s.querySelectorAll('.voz')).forEach(function(f){
+        if(vivos.indexOf(f)===-1) f.remove();
+      });
+      s.hidden=false;
+    }
+  })();
+</script>
+</body>
+</html>
